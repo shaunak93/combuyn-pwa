@@ -1,0 +1,17 @@
+.indicators {
+  padding: 0 !important;
+  margin: 5px 0 0 !important;
+}
+
+.image_indicator {
+  margin-right: 5px;
+  background-color: #b9b9b9;
+  height: 3px;
+  width: 15px;
+  border-radius: 2px;
+  border: 0;
+}
+
+.image_indicator.active {
+  background-color: #4d4d4d;
+}

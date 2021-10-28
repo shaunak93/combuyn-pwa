@@ -1,0 +1,55 @@
+.product-banner {
+  width: 100%;
+  height: 200px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.product-offer-details {
+  background: white;
+  padding: 10px;
+}
+
+#product-offer-details-section {
+  color: var(--main-text-color);
+  background-color: var(--main-bg-color);
+}
+
+#product-offer-details-section > div {
+  margin-bottom: 10px;
+}
+
+.product-name {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.product-price {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.product-price > p {
+  margin: 0 3px 0 0;
+}
+
+.product-delivery-fee {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.product-delivery-fee > p {
+  margin: 0 3px 0 0;
+}

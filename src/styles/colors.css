@@ -1,0 +1,23 @@
+:root {
+  --base-blue: #3785b8;
+  --base-font-white: #f7f7f7;
+  --base-font-black: #4d4d4d;
+  --base-grey: #d1d1d1;
+  --base-light-grey: #999999;
+}
+
+.font-16 {
+  font-size: 16px;
+}
+
+.font-10 {
+  font-size: 8px;
+}
+
+.font-8 {
+  font-size: 8px;
+}
+
+.font-bold {
+  font-weight: bold !important;
+}

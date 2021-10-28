@@ -1,0 +1,158 @@
+.campaign-status {
+  border-radius: 14px;
+  height: 14px;
+  line-height: 14px;
+  background-color: var(--status-bg-color);
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  padding: 5px;
+}
+
+.campaign-status.upcoming {
+  color: var(--status-upcoming-text-color);
+}
+.campaign-status.ongoing {
+  color: var(--status-ongoing-text-color);
+}
+.campaign-status.finished {
+  color: var(--status-finished-text-color);
+}
+
+.campaigns {
+  color: var(--base-font-black);
+}
+
+.campaigns .header p {
+  margin: 21px 0 0 0 !important;
+  padding: 0 !important;
+}
+
+.campaigns .container {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: normal;
+  align-items: normal;
+  align-content: normal;
+}
+
+.campaigns .container {
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  scrollbar-width: none; /* for Firefox */
+  overflow-y: scroll;
+}
+
+.campaigns .container::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
+}
+
+.campaigns .container .item {
+  display: block;
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  align-self: auto;
+  order: 0;
+  margin-right: 20px;
+  background-color: var(--base-background-white);
+  position: relative;
+  overflow: clip;
+  width: 260px;
+  height: 136px;
+  position: relative;
+  border-radius: 10px;
+  box-shadow: 1px 1px 6px 1px #888;
+}
+
+.campaigns .container .item .share-button {
+  height: 34px;
+  width: 83px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 0 0 25px 0;
+  background-color: var(--base-white);
+}
+
+.campaigns .container .item .bookmark-button {
+  height: 44px;
+  width: 40px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 0 0 0 30px;
+  background-color: var(--base-white);
+}
+
+.campaigns .header {
+  padding-right: 30px !important;
+}
+.campaigns .header .view-all {
+  color: var(--base-blue);
+  width: max-content;
+}
+
+.campaigns .container .item img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-height: 100%;
+  min-width: 100%;
+  width: 100%;
+}
+
+.campaigns .container .item .product-details-active {
+  background-color: transparent;
+  color: var(--base-font-white);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 80px;
+  background-image: linear-gradient(0deg, #ffffff94, transparent);
+}
+
+.campaigns .container .item .product-details-active {
+  background-color: transparent;
+  color: var(--base-font-white);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 80px;
+  background-image: linear-gradient(0deg, #ffffff94, transparent);
+}
+
+.campaigns .container .item .product-details-inactive {
+  color: var(--base-font-white);
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(0deg, #ffffff94, transparent);
+}
+
+.campaigns .container .item .product-details-inactive .start-again-button {
+  background-color: white;
+  height: 21px;
+  width: 89px;
+  border-radius: 10px;
+  margin-top: 10px;
+  box-shadow: none;
+  mix-blend-mode: screen;
+  background-color: #fff;
+  columns: #000;
+}
+
+.campaigns .container .item .product-details-inactive .completed-tag p {
+  width: max-content;
+  margin-top: 7px;
+}
+
+.campaigns .container .item .product-details-inactive .completed-tag {
+  width: max-content;
+  float: right;
+  display: inline-flex;
+}
+.campaigns .container .item .product-details-inactive .completed-tag .icon {
+  color: var(--base-icon-green);
+}

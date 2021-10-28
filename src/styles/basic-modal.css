@@ -1,0 +1,55 @@
+.basic-modal {
+  background-color: var(--base-white);
+  height: 100%;
+}
+
+.basic-modal .basic-modal-header {
+  padding: 0 !important;
+  position: relative;
+  height: 45px;
+  background-color: transparent;
+}
+
+.basic-modal .basic-modal-header div {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  padding-top: 0px;
+}
+
+.basic-modal .basic-modal-header .left-buttons {
+  left: 0;
+  z-index: 999;
+}
+
+.basic-modal .basic-modal-header .left-buttons button {
+  color: var(--base-blue);
+}
+
+.basic-modal .basic-modal-header .label {
+  left: 0;
+  right: 0;
+  width: max-content;
+  text-align: center;
+}
+
+.basic-modal .basic-modal-header .right-buttons {
+  right: 0;
+  z-index: 999;
+}
+
+.campaign-flow .left-button {
+  font-size: 16px !important;
+  font-weight: 900;
+  text-transform: capitalize;
+  height: 100%;
+}
+
+.campaign-flow .right-button {
+  height: 100%;
+  padding-left: 10px;
+}
+
+.campaign-flow .left-button .MuiButton-startIcon {
+  margin-right: 0px !important;
+}

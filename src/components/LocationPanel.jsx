@@ -1,8 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Grid from '@material-ui/core/Grid'
-import { Map, GoogleApiWrapper } from 'google-maps-react';
-import BasicModal from './base/BasicModal';
 import MapContainerModal from '../modals/MapContainerModal';
 import { setGoogleMapsApiKey, getAddressByLatLong, getLatLongByPlaceID } from '../utils/googleMaps';
 import AddressSearchModal from '../modals/AddressSearchModal';

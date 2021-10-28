@@ -6,7 +6,6 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import { Typography } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import { set } from 'idb-keyval';
 
 import {showToast} from '../utils/general';
 

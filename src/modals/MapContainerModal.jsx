@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Map, GoogleApiWrapper } from 'google-maps-react';
 import GoogleMapReact from 'google-map-react'; 
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import BasicModal from '../components/base/BasicModal';

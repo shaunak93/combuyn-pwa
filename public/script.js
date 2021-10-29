@@ -28,6 +28,7 @@ if (window.location.protocol === 'http:') {
 }
 
 window.addEventListener('beforeinstallprompt', (event) => {
+  alert('beforeinstallprompt')
     console.log('👍', 'beforeinstallprompt', event);
     // Stash the event so it can be triggered later.
     window.deferredPrompt = event;
@@ -37,8 +38,8 @@ window.addEventListener('beforeinstallprompt', (event) => {
 
 if (window.matchMedia('(display-mode: standalone)').matches) {  
   // do things here
-  //alert('standalone')
+  alert('standalone')
 }
 else{
-  //alert('browser')
+  alert('browser')
 }

@@ -52,8 +52,8 @@ function App() {
         </div>
       </Router>
       <ToastContainer style={{ margin: "0px 10px 10px",width: "calc(100% - 20px)"}}/>
-      {!!supported() && !isInstalled() && handleInstall()}
-      {/* {showInstallPrompt && !!supported() && !isInstalled() && (
+
+      {showInstallPrompt && supported() && !isInstalled() && (
         <div style={{"position":"fixed","width":"100%","height":"100%","background":"#000000cf"}}>
           <div style={{"position":"absolute","bottom":"10px","width":"90%","left":"5%","height":"auto","backgroundColor":"rgb(255, 255, 255)","borderRadius":"25px"}}
           >
@@ -65,14 +65,14 @@ function App() {
                 Install our app to get latest deals and enjoy bulk pricing
               </p>
             </div>
-            <div onClick={handleInstallClick} style={{"height":"30px","padding":"10px 20px", "textAlign": 'center', borderRadius: '0 0 25px 25px', backgroundColor:'#fff'}}>
+            <div onClick={handleInstall} style={{"height":"30px","padding":"10px 20px", "textAlign": 'center', borderRadius: '0 0 25px 25px', backgroundColor:'#fff'}}>
               <p style={{width: 'max-content', margin: 'auto', color: '#FFA64D', fontWeight: 'bold', fontSize: '25px'}}>Install</p>
             </div>
             <span onClick={()=>{setShowInstallPrompt(false)}}
             style={{"fontSize":"25px","fontWeight":"bold","color":"rgb(255, 255, 255)","height":"33px","width":"33px","borderRadius":"16px","background":"rgb(77, 77, 77)","textAlign":"center","top":"-10px","right":"-10px","position":"absolute"}}>x</span>
           </div>
         </div>
-      )} */}
+      )}
     </>
   );
 }

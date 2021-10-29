@@ -17,13 +17,35 @@ import {checkAndRefreshAccessToken} from './apis/users';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import { useReactPWAInstall } from "react-pwa-install";
+import CombuynIconSmall from "./assets/combuynIconSmall.png";
+
 
 function App() {
+  const { pwaInstall, supported, isInstalled } = useReactPWAInstall();
+  const [showInstallPrompt, setShowInstallPrompt] = useState(true)
   
   useEffect(() => {
     getGlobalVariables();
     checkAndRefreshAccessToken();
+    if(supported() && !isInstalled()){
+      pwaInstall({
+        title: "Install Combuyn",
+        logo: CombuynIconSmall
+      })
+        .then(() => {})
+        .catch(() => {});
+    }
   }, [])
+
+  // const handleInstallClick = () => {
+  //   pwaInstall({
+  //     title: "Install Combuyn",
+  //     logo: CombuynIconSmall
+  //   })
+  //     .then(() => {})
+  //     .catch(() => {});
+  // };
 
   return (
     <>
@@ -38,6 +60,26 @@ function App() {
         </div>
       </Router>
       <ToastContainer style={{ margin: "0px 10px 10px",width: "calc(100% - 20px)"}}/>
+      {/* {showInstallPrompt && !!supported() && !isInstalled() && (
+        <div style={{"position":"fixed","width":"100%","height":"100%","background":"#000000cf"}}>
+          <div style={{"position":"absolute","bottom":"10px","width":"90%","left":"5%","height":"auto","backgroundColor":"rgb(255, 255, 255)","borderRadius":"25px"}}
+          >
+            <div style={{"height":"30px","borderBottom":"1px solid rgb(170, 170, 170)","margin":"10px 10px 0px","paddingTop":"10px","padding":"10px 20px"}}>
+              <span style={{"fontSize":"20px","fontWeight":"bold","color":"#3785B8"}}>Install Combuyn</span>
+            </div>
+            <div style={{"height":"auto","margin":"0px 10px","padding":"30px 30px 40px"}}>
+              <p style={{"fontSize":"18px","fontWeight":"400","color":"rgb(77, 77, 77)", margin: 'auto'}}>
+                Install our app to get latest deals and enjoy bulk pricing
+              </p>
+            </div>
+            <div onClick={handleInstallClick} style={{"height":"30px","padding":"10px 20px", "textAlign": 'center', borderRadius: '0 0 25px 25px', backgroundColor:'#fff'}}>
+              <p style={{width: 'max-content', margin: 'auto', color: '#FFA64D', fontWeight: 'bold', fontSize: '25px'}}>Install</p>
+            </div>
+            <span onClick={()=>{setShowInstallPrompt(false)}}
+            style={{"fontSize":"25px","fontWeight":"bold","color":"rgb(255, 255, 255)","height":"33px","width":"33px","borderRadius":"16px","background":"rgb(77, 77, 77)","textAlign":"center","top":"-10px","right":"-10px","position":"absolute"}}>x</span>
+          </div>
+        </div>
+      )} */}
     </>
   );
 }

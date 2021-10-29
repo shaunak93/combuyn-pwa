@@ -60,7 +60,7 @@ function Home(props) {
                     <LoaderOverlay show={isLoading}/>
                     <LocationPanel currentCoordinates={currentCoordinates} setCurrentCoordinates={setCurrentCoordinates} />
                     <Categories/>
-                    {campaignDetailsList.length &&
+                    {!!campaignDetailsList.length &&
                         <>
                             <Campaigns 
                                 headerLabel={'Active campaigns'} 

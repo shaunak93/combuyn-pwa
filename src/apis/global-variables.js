@@ -5,7 +5,7 @@ axios.defaults.headers.common['Content-Type'] = 'application/json'
 let myStorage = window.localStorage;;
 
 const getGlobalVariables = () => {
-    let url ='https://thingproxy.freeboard.io/fetch/' + baseUrl + '/interface/main/global-variables/';
+    let url = baseUrl + '/interface/main/global-variables/';
     let apiOptions = {};
     axios.get(url,apiOptions)
     .then((res)=>{

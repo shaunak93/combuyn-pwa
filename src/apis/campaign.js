@@ -6,7 +6,7 @@ let myStorage = window.localStorage;;
 
 const getCampaignList = (options, callback) => {
     let access_token
-    let url ='https://thingproxy.freeboard.io/fetch/' + baseUrl + '/campaign/public';
+    let url = baseUrl + '/campaign/public';
     let apiOptions = {
         // headers: {
         //     Authorization: `Bearer ${myStorage.getItem('access_token')}`
@@ -26,7 +26,7 @@ const getCampaignList = (options, callback) => {
 
 const getCampaignDetails = (link, callback) => {
     let access_token
-    let url = 'https://thingproxy.freeboard.io/fetch/' + baseUrl + '/campaign/public/'+ link;
+    let url = baseUrl + '/campaign/public/'+ link;
     let apiOptions = {
         // headers: {
         //     Authorization: `Bearer ${myStorage.getItem('access_token')}`

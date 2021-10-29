@@ -67,6 +67,8 @@ function Campaign(props) {
     const [order, setOrder] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [optionalData, setOptionalData] = useState({})
+    const [selectedAddress, setSelectedAddress] = useState(null)
+
     let {totalSellingPrice, totalOriginalPrice} = useCostCalculator({campaignDetails, selectorsMeta, order});
     let history = useHistory();
     let { id } = useParams();

@@ -28,24 +28,16 @@ function App() {
   useEffect(() => {
     getGlobalVariables();
     checkAndRefreshAccessToken();
-    if(supported() && !isInstalled()){
-      pwaInstall({
-        title: "Install Combuyn",
-        logo: CombuynIconSmall
-      })
-        .then(() => {})
-        .catch(() => {});
-    }
   }, [])
 
-  // const handleInstallClick = () => {
-  //   pwaInstall({
-  //     title: "Install Combuyn",
-  //     logo: CombuynIconSmall
-  //   })
-  //     .then(() => {})
-  //     .catch(() => {});
-  // };
+  const handleInstall = () => {
+    pwaInstall({
+      title: "Install Combuyn",
+      logo: CombuynIconSmall
+    })
+      .then(() => {})
+      .catch(() => {});
+  };
 
   return (
     <>
@@ -60,6 +52,7 @@ function App() {
         </div>
       </Router>
       <ToastContainer style={{ margin: "0px 10px 10px",width: "calc(100% - 20px)"}}/>
+      {!!supported() && !isInstalled() && handleInstall()}
       {/* {showInstallPrompt && !!supported() && !isInstalled() && (
         <div style={{"position":"fixed","width":"100%","height":"100%","background":"#000000cf"}}>
           <div style={{"position":"absolute","bottom":"10px","width":"90%","left":"5%","height":"auto","backgroundColor":"rgb(255, 255, 255)","borderRadius":"25px"}}

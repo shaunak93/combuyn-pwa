@@ -46,8 +46,6 @@ function LocationPanel(props) {
 
     useState(()=>{
         if(!currentCoordinates){
-            alert(123)
-            alert(navigator.geolocation.getCurrentPosition)
             navigator.geolocation.getCurrentPosition(
                 function(position) {
                     let latLong = {
@@ -62,7 +60,6 @@ function LocationPanel(props) {
                     setCurrentCoordinates(latLong);
                 },
                 function(err){
-                    alert(err)
                 }
               );
         }

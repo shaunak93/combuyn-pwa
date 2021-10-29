@@ -9,7 +9,9 @@ import CampaignModal from '../modals/CampaignModal';
 import FooterTabs from '../components/base/FooterTabs';
 import LoaderOverlay from '../components/base/LoaderOverlay';
 
-import {getCampaignList} from '../apis/campaign'
+import {getCampaignList} from '../apis/campaign';
+
+import { useHistory } from "react-router-dom";
 
 
 function Home(props) {
@@ -17,18 +19,18 @@ function Home(props) {
 
     const [campaignDetailsList, setCampaignDetailsList] = useState([]);
     const [showAllActiveCampaigns, setShowAllActiveCampaigns] = useState(false);
-    const [selectedCampaignId, setSelectedCampaignId] = useState(null);
     const [currentCoordinates, setCurrentCoordinates] = useState(null);
     const [isLoading, setIsLoading] = useState(false)
+    let history = useHistory();
 
     const onCampaignCardClick = (id) => {
         setShowAllActiveCampaigns(false);
-        setSelectedCampaignId(id)
+        history.push(`/campaign/${id}`)
     }
 
-    const onCampaignModalClose = () => {
-        setSelectedCampaignId(null)
-    }
+    // const onCampaignModalClose = () => {
+    //     setSelectedCampaignId(null)
+    // }
 
     const onShowAllCampaignsModal = () => {
         setShowAllActiveCampaigns(true)
@@ -54,7 +56,6 @@ function Home(props) {
     return (
         <>
             <HeaderBar/>
-
             <PageBody>
                     <LoaderOverlay show={isLoading}/>
                     <LocationPanel currentCoordinates={currentCoordinates} setCurrentCoordinates={setCurrentCoordinates} />
@@ -78,12 +79,12 @@ function Home(props) {
                      }
             </PageBody>
             <FooterTabs value='home'/>
-            <CampaignModal
+            {/*<CampaignModal
                 campaignId={selectedCampaignId}
                 open={!!selectedCampaignId}
-                initialState={'home'}
+                initialState={'paymentConfirmed'}
                 onClose={onCampaignModalClose}
-            />
+            />*/}
         </>
         
     );

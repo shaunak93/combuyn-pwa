@@ -34,3 +34,11 @@ window.addEventListener('beforeinstallprompt', (event) => {
     // Remove the 'hidden' class from the install button container
     divInstall.classList.toggle('hidden', false);
   });
+
+if (window.matchMedia('(display-mode: standalone)').matches) {  
+  // do things here
+  //alert('standalone')
+}
+else{
+  //alert('browser')
+}

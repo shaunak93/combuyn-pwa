@@ -46,23 +46,28 @@ function LocationPanel(props) {
 
     useState(()=>{
         if(!currentCoordinates){
-            navigator.geolocation.getCurrentPosition(function(position) {
-                let latLong = {
-                    lat: position.coords.latitude,
-                    long: position.coords.longitude
-                }
-                setCurrentAddress(latLong);
-                getAddressByLatLong(latLong.lat, latLong.long, (err, res) => {
-                    if(res){
-                        setCurrentAddress(res);
+            alert(123)
+            alert(navigator.geolocation.getCurrentPosition)
+            navigator.geolocation.getCurrentPosition(
+                function(position) {
+                    let latLong = {
+                        lat: position.coords.latitude,
+                        long: position.coords.longitude
                     }
-                })
-              });
+                    getAddressByLatLong(latLong.lat, latLong.long, (err, res) => {
+                        if(res){
+                            setCurrentAddress(res);
+                        }
+                    })
+                    setCurrentCoordinates(latLong);
+                },
+                function(err){
+                    alert(err)
+                }
+              );
         }
     }, [currentCoordinates])
-    //<Grid item xs={12} className="font-8">
-    //Viewing from location
-    //</Grid>
+
 
     return (
         <>

@@ -140,4 +140,36 @@ const addUserAddress = ({address, access}, callback) => {
     })
 } 
 
-export {createOTP, validateOTP, createBuyer, addUserAddress};
+const checkAndRefreshAccessToken = () => {
+    let accessToken = myStorage.getItem('access_token');
+    let accessTTL = myStorage.getItem('access_ttl');
+    let refreshToken =  myStorage.getItem('refresh_token');
+    let currentTime = new Date().getTime(); 
+    
+    if(!accessToken) return;
+    if(accessTTL < currentTime){
+        let url = baseUrl + '/token/refresh/';
+        let postBody = {
+            refresh: refreshToken
+        }
+        let apiOptions = {
+            headers: {
+                Authorization: `Bearer ${accessToken}`
+            }
+        }
+        axios.post(url,postBody, apiOptions)
+        .then((res)=>{
+            let data = res.data;
+            let {access} = data
+            myStorage.getItem('access_token', access);
+            myStorage.getItem('access_ttl', new Date().getTime() + 518400000); //keeping ttl of 6days
+        })
+        .catch((error)=>{
+            myStorage.getItem('access_token', null);
+            myStorage.getItem('access_ttl', null);
+            myStorage.getItem('refresh_token', null);
+        })
+    }
+}
+
+export {createOTP, validateOTP, createBuyer, addUserAddress, checkAndRefreshAccessToken};

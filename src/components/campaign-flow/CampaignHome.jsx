@@ -14,21 +14,22 @@ import {getFulfilledPecentage, getCountdownTimeString, getSelectorsMeta, checkOr
 
 
 function CampaignHome(props) {
-    let {campaignDetails = {}, productDetails = {}, totalSellingPrice, totalOriginalPrice, order, selectorsMeta, setOrder, onBackClick, onNextClick} = props;
+    let {
+        campaignDetails = {}, productDetails = {}, 
+        totalSellingPrice, totalOriginalPrice,
+        order, selectorsMeta, 
+        setOrder, onBackClick, onNextClick
+    } = props;
     let currentTime = new Date().getTime();
     let {
-        name, link, is_active, start_datetime, end_datetime, image,
-        smallDescription, 
-        //original_price, selling_price,
-        total_order_count, current_order_count, features
+        name, is_active, 
+        end_datetime, smallDescription,
+        total_order_count, current_order_count,
     } = campaignDetails;
     let {
-        id, description, product_meta, product_image
+        id, description, product_image
     } = productDetails
-    let productName = productDetails.name || '';
-    //let selectorsMeta = getSelectorsMeta(productDetails); 
-    
-    
+
     const onSelectorUpdate = (index, key, value) => {
         let metadata = order.product_meta;
         if(!metadata.length) metadata.push({product: id})
@@ -47,10 +48,6 @@ function CampaignHome(props) {
         }
         
     }
-
-    //let  {total_selling_price, total_original_price} = calculateCartPricing({selectorsMeta, order, original_price, selling_price});
-
-
 
     return (
         <>
@@ -103,12 +100,6 @@ function CampaignHome(props) {
                         label="Description" 
                         details={description}
                     />
-                    {/** 
-                     * <Article 
-                        label="Description" 
-                        details="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea"
-                    />
-                    */}
                 </div>
             
             </div>

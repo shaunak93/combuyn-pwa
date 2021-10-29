@@ -57,10 +57,8 @@ function LoginComponent(props) {
     const requestUserOTP = async () => {
         setIsLoading(true);
         createOTP({mobileNumber: username, countryCode: '+91'}, (err, {generatedUsername, buyer_id}) => {
-            console.log({generatedUsername, buyer_id});
             setIsLoading(false);
             if(err){
-                console.log(err)
                 showToast({
                     type:'error', 
                     message: err
@@ -76,8 +74,7 @@ function LoginComponent(props) {
                     setIsNewUser(true);
                 }
 
-            }
-            
+            }         
         })
     }
 
@@ -89,6 +86,7 @@ function LoginComponent(props) {
                 let {access, refresh, user } = res
 
                 myStorage.setItem('access_token', access)
+                myStorage.setItem('access_ttl', (new Date().getTime() + 518400000))
                 myStorage.setItem('refresh_token', refresh)
                 myStorage.setItem('user', user);
                 myStorage.setItem('mobile', username);

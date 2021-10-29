@@ -180,6 +180,15 @@ function PaymentConfirmed(props) {
                     </div>
                 </div>
             </div>
+            <div onClick={onNextClick}
+                style={{position: 'absolute', height: '40px', width: '100%',
+                bottom: '10px',  boxSizing:'border-box',
+                backgroundColor:'#FFFFFF',
+                margin: '10px 30px 0', boxSizing:'border-box', borderRadius: '5px', 
+                textAlign: 'center', color: '#3785B8', fontSize: '20px', 
+                fontWeight: 'bold', paddingTop: '14px', textDecoration: 'underline'}}>
+                Back to Campaign Listing
+            </div>
         </>
     );
 }

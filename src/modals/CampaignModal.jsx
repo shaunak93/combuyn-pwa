@@ -1,29 +1,16 @@
 import React, {useEffect, useState} from 'react';
 
-
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
-import Button from '@mui/material/Button'
-import ButtonGroup from '@mui/material/ButtonGroup';
-
 import BasicModal from '../components/base/BasicModal';
 import CampaignHome from '../components/campaign-flow/CampaignHome';
 import Cart from '../components/campaign-flow/Cart';
 import OrderSummary from '../components/campaign-flow/OrderSummary';
 import Payment from '../components/campaign-flow/Payment';
-import PaymentGateway from '../components/campaign-flow/PaymentGateway';
 import PaymentConfirmed from '../components/campaign-flow/PaymentConfirmed';
 import OrderConfirmed from '../components/campaign-flow/OrderConfirmed';
 import LoaderOverlay from '../components/base/LoaderOverlay';
 
 import {getSelectorsMeta} from '../components/campaign-flow/utils';
-
-
 import {getCampaignProductDetails} from '../apis/product';
-import { ContactsOutlined } from '@material-ui/icons';
 
 let myStorage = window.localStorage;
 

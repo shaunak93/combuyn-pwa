@@ -1,15 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import {useHistory, useParams} from "react-router-dom";
 
-import CampaignHome from '../components/campaign-flow/CampaignHome';
-import Cart from '../components/campaign-flow/Cart';
-import OrderSummary from '../components/campaign-flow/OrderSummary';
-import Payment from '../components/campaign-flow/Payment';
-import PaymentConfirmed from '../components/campaign-flow/PaymentConfirmed';
-import OrderConfirmed from '../components/campaign-flow/OrderConfirmed';
+import ProductDetails from '../flows/campaign/products/ProductDetails';
+import Cart from '../flows/campaign/products/Cart';
+import OrderSummary from '../flows/campaign/products/OrderSummary';
+import Payment from '../flows/campaign/products/Payment';
+import PaymentConfirmed from '../flows/campaign/products/PaymentConfirmed';
+import OrderConfirmed from '../flows/campaign/products/OrderConfirmed';
 import LoaderOverlay from '../components/base/LoaderOverlay';
 
-import {getSelectorsMeta} from '../components/campaign-flow/utils';
+import {getSelectorsMeta} from '../flows/campaign/products/utils';
 import {getCampaignProductDetails} from '../apis/product';
 
 let myStorage = window.localStorage;
@@ -66,8 +66,9 @@ function Campaign(props) {
     const [state, setState] = useState('home');
     const [order, setOrder] = useState({});
     const [isLoading, setIsLoading] = useState(true);
-    const [optionalData, setOptionalData] = useState({})
-    const [selectedAddress, setSelectedAddress] = useState(null)
+    const [optionalData, setOptionalData] = useState({});
+    const [selectedAddress, setSelectedAddress] = useState(null);
+    const [currentCoordinates, setCurrentCoordinates] = useState(null);
 
     let {totalSellingPrice, totalOriginalPrice} = useCostCalculator({campaignDetails, selectorsMeta, order});
     let history = useHistory();
@@ -165,16 +166,18 @@ function Campaign(props) {
                 />;
             case 'home':
             default:
-                 return <CampaignHome 
+                 return <ProductDetails 
                     campaignDetails={campaignDetails}
                     productDetails={productDetails}
                     selectorsMeta={selectorsMeta}
                     order={order}
                     totalSellingPrice={totalSellingPrice}
                     totalOriginalPrice={totalOriginalPrice}
+                    currentCoordinates={currentCoordinates}
                     setOrder={setOrder}
                     onBackClick={onClose}
                     onNextClick={onNextClick}
+                    setCurrentCoordinates={setCurrentCoordinates}
                 />;
         }
     }

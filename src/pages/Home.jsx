@@ -5,7 +5,6 @@ import LocationPanel from '../components/LocationPanel';
 import Categories from '../components/Categories';
 import Campaigns from '../components/Campaigns';
 import AllCampaignsModal from '../modals/AllCampaignsModal';
-import CampaignModal from '../modals/CampaignModal';
 import FooterTabs from '../components/base/FooterTabs';
 import LoaderOverlay from '../components/base/LoaderOverlay';
 
@@ -27,10 +26,6 @@ function Home(props) {
         setShowAllActiveCampaigns(false);
         history.push(`/campaign/${id}`)
     }
-
-    // const onCampaignModalClose = () => {
-    //     setSelectedCampaignId(null)
-    // }
 
     const onShowAllCampaignsModal = () => {
         setShowAllActiveCampaigns(true)
@@ -79,12 +74,6 @@ function Home(props) {
                      }
             </PageBody>
             <FooterTabs value='home'/>
-            {/*<CampaignModal
-                campaignId={selectedCampaignId}
-                open={!!selectedCampaignId}
-                initialState={'paymentConfirmed'}
-                onClose={onCampaignModalClose}
-            />*/}
         </>
         
     );

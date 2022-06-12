@@ -172,4 +172,80 @@ const checkAndRefreshAccessToken = () => {
     }
 }
 
-export {createOTP, validateOTP, createBuyer, addUserAddress, checkAndRefreshAccessToken};
+const requestOTP = ({mobileNumber}, callback) => {
+    let url = baseUrl + 'v1/auth/otp'
+    let postBody = {
+        "mobile": mobileNumber,
+        "type": "login"
+    }
+    
+    axios.post(url,postBody)
+    .then((res)=>{
+        let {data, status} = res;
+        if(status === 200){
+            callback(null, data)
+        }
+        else{
+            callback('Unable to generate OTP. Please try again.')
+        }
+    })
+    .catch((error)=>{
+        console.log(error)
+        callback('Unable to generate OTP. Please try again.')
+    })
+}
+
+const loginWithOTP = ({mobileNumber, otp}, callback) => {
+    let url = baseUrl + 'v1/auth/login'
+    let postBody = {
+        "mobile": mobileNumber,
+        "otp": otp
+    }
+    axios.post(url,postBody)
+    .then((res)=>{
+        //let data = res;
+        let {data, status} = res
+        if(status === 200){
+            let {token, user} = data || {};
+            if(token || user){
+                callback(null,  {token, user})
+            }
+        }
+        else{
+            callback('Unable to validate OTP. Please try again.')
+        }
+    })
+    .catch((error)=>{
+        callback('Unable to validate OTP. Please try again.')
+    })
+}
+
+
+// {
+//     "token": {
+//         "tokenType": "Bearer",
+//         "accessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NDc3NjkxNjIsImlhdCI6MTY0Nzc2ODI2Miwic3ViIjoiNjIwZjI2MjI0OTZiYTVmOGQ3NzZiOGRmIn0.COiAW0zJ5hlpQMSei4l0IX6lltdvlMRJQmoQIlxxAtc",
+//         "refreshToken": "620f2622496ba5f8d776b8df.2f39ba9ee9688310291d6a1768017e48f12007ca80b363bc413612aef9512451a8bf180fe4f4318f",
+//         "expiresIn": "2022-03-20T09:39:22.900Z"
+//     },
+//     "user": {
+//         "id": "620f2622496ba5f8d776b8df",
+//         "name": "Vineesh M P",
+//         "email": "test@cbn.com",
+//         "role": "user",
+//         "createdAt": "2022-02-18T04:52:50.917Z",
+//         "address": [
+//             {
+//                 "apartment": "Orion Plaza",
+//                 "tower": "B",
+//                 "flatNo": "201"
+//             }
+//         ],
+//         "mobile": 9787878789
+//     }
+// }
+
+
+
+
+export {createOTP, validateOTP, createBuyer, addUserAddress, checkAndRefreshAccessToken, requestOTP, loginWithOTP};

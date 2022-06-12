@@ -40,6 +40,11 @@ function LocationPanel(props) {
         setIsAddressSearchOpen(true)
     }
 
+    const onClose = () => {
+        setIsMapOpen(false);
+        setIsAddressSearchOpen(false)
+    }
+
     useState(()=>{
         setGoogleMapsApiKey('AIzaSyC_etEdOc1bGYD4JoUau1fM4-iT_XLBFg4')
     })
@@ -89,6 +94,7 @@ function LocationPanel(props) {
                 apiKey={'AIzaSyC_etEdOc1bGYD4JoUau1fM4-iT_XLBFg4'} 
                 currentCoordinates={currentCoordinates}
                 onLocationUpdate={handleLocationUpdateLatLong}
+                onBackClick={openAddressSearch}
             />}
             <AddressSearchModal 
                 apiKey={'AIzaSyC_etEdOc1bGYD4JoUau1fM4-iT_XLBFg4'} 
@@ -96,6 +102,7 @@ function LocationPanel(props) {
                 userAddresses={[]} 
                 openMap={openMap}
                 onLocationUpdate={handleLocationUpdatePlaceId}
+                onBackClick={onClose}
             />
         </>
     );

@@ -1,0 +1,64 @@
+.profile-page {
+  height: 100%;
+}
+
+.profile-menu{
+  height: 100%;
+  padding: 30px;
+}
+
+.profile-menu .user-details-div{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile-menu .user-details-div .name{
+  margin: 0;
+  color: #4D4D4D;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.profile-menu .user-details-div .other-details{
+  margin: 0;
+  color: #999999;
+  font-size: 12px;
+}
+
+.profile-menu .user-details-div .edit-button{
+  color: #FFA64D;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 10px 0 10px 10px;
+}
+
+.profile-option-list{
+  margin: 10px 10px;
+}
+
+.profile-menu .profile-option-div {
+  padding: 20px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profile-menu .profile-option-div .option-title{
+ margin: 0;
+ font-size:16px;
+ font-weight:bold;
+ color: #3785B8;
+}
+
+.profile-menu .profile-option-div .option-description{
+  margin: 0;
+  font-size:10px;
+  font-weight: 200;
+  color: #999999;
+}
+
+.profile-menu .profile-option-div .select-button{
+
+}

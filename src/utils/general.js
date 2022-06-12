@@ -1,4 +1,6 @@
 import { toast } from 'react-toastify';
+import moment from 'moment';
+let myStorage = window.localStorage;
 
 let toastOptions = {
   position: "bottom-center",
@@ -49,5 +51,20 @@ const  getRandomColor = () => {
     return totalQunatity;
   }
 
+  const checkIsLoggedIn = () => {
+    let accessToken = myStorage.getItem('access_token');
+    let accessTTL = myStorage.getItem('access_ttl');
+    let currentTime = new Date().getTime();
 
-  export {getRandomColor, invertHex, showToast, getOrderQuantity};
+    if(!accessToken || !accessTTL || accessTTL < currentTime){
+      return false;
+    }
+
+    return true;
+  }
+
+  const getHumanReadableDate = (date, format) => {
+    return moment(date).format(format || 'Do MMMM YYYY');
+  }
+
+  export {getRandomColor, invertHex, showToast, getOrderQuantity, checkIsLoggedIn, getHumanReadableDate};

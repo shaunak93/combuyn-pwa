@@ -7,7 +7,7 @@ import ColorSelector from '../selectors/ColorSelector';
 import SelectorGroup from '../selectors/SelectorGroup';
 import QuantitySelector from '../selectors/QuantitySelector';
 
-import {checkOrder } from '../campaign-flow/utils';
+import {checkOrder } from '../../flows/campaign/products/utils';
 import { getOrderQuantity} from '../../utils/general';
 
 function AddItemButtonWithPopup(props) {

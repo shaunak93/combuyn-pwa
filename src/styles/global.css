@@ -55,6 +55,14 @@
   margin-top: 30px !important;
 }
 
+.mt-40 {
+  margin-top: 40px !important;
+}
+
+.font-22 {
+  font-size: 22px !important;
+}
+
 .font-20 {
   font-size: 20px !important;
 }
@@ -133,18 +141,6 @@
   height: calc(100% - 112px);
 }
 
-.page-body {
-  height: calc(100% - 112px);
-  overflow-y: scroll;
-  overflow-x: hidden;
-  -ms-overflow-style: none; /* for Internet Explorer, Edge */
-  scrollbar-width: none; /* for Firefox */
-}
-
-.page-body::-webkit-scrollbar {
-  display: none; /* for Chrome, Safari, and Opera */
-}
-
 .user-location-div {
   padding: 10px 30px 5px !important;
   height: 50px !important;
@@ -158,61 +154,6 @@
 
 .user-location-div .current-address {
   color: var(--base-blue);
-}
-
-.categories {
-  color: var(--base-font-black);
-}
-
-.categories .header p {
-  margin: 21px 0 0 0 !important;
-  padding: 0 !important;
-}
-
-.categories .container {
-  margin-top: 15px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: normal;
-  align-items: normal;
-  align-content: normal;
-}
-
-.categories .container .item {
-  display: block;
-  flex-grow: 0;
-  flex-shrink: 1;
-  flex-basis: auto;
-  align-self: auto;
-  order: 0;
-  margin-right: 20px;
-  background-color: var(--base-background-white);
-  position: relative;
-  overflow: clip;
-}
-
-.categories .container .item {
-  width: 102px;
-  height: 117px;
-  border-radius: 10px;
-  box-shadow: 1px 1px 6px 1px #888;
-}
-
-.categories .container .item img {
-  width: 200px;
-  height: 200px;
-  position: absolute;
-  top: 30%;
-  left: -30px;
-  border-radius: 100px;
-}
-
-.categories .container .item .green {
-  color: var(--base-icon-green);
-}
-.categories .container .item .red {
-  color: var(--base-font-red);
 }
 
 .progressBar {

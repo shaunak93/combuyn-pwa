@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: "roboto";
+  font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -8,6 +8,7 @@ body {
 html {
   height: 100%;
 }
+
 body,
 #root {
   width: inherit;
@@ -19,12 +20,17 @@ body,
 #app {
   width: inherit;
   height: 100%;
-  background-color: #ffffff;
   position: fixed;
   top: 0;
   bottom: 0;
   right: 0;
   left: 0;
+  background: repeating-linear-gradient(
+    #e6e6e6,
+    #e6e6e6 30%,
+    #ffffff 70%,
+    #ffffff 100%
+  );
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",

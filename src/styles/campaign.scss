@@ -1,0 +1,194 @@
+.campaign-page {
+  height: 100%;
+}
+
+.common-header {
+  height: 40px;
+  padding: 10px 30px 8px;
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+
+  .left-side {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    .back-icon {
+      font-size: 15px;
+      color: #3785b8;
+      font-weight: bold;
+    }
+    .back-label {
+      font-size: 14px;
+      color: #4d4d4d;
+      font-weight: bold;
+    }
+  }
+  .right-side {
+    .title {
+      color: #3785b8;
+      font-size: 22px;
+      font-weight: bold;
+    }
+  }
+}
+
+.campaign-details,
+.campaign-catalog {
+  height: calc(100% - 48px);
+  width: calc(100% - 20px);
+  background-color: white;
+  margin: 10px 10px 0;
+  border-radius: 10px 10px 0 0;
+
+  > .header {
+    padding: 18px 0 0 20px;
+
+    .label {
+      font-size: 24px;
+      color: #4d4d4d;
+      font-weight: bold;
+    }
+  }
+
+  .ribbon-panel {
+    width: calc(100% + 20px);
+    height: 57px;
+    background-color: #3785b8;
+    margin: 10px 0 0 -10px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .time-left-label {
+      font-weight: bold;
+      font-size: 14px;
+      color: #fff;
+      margin-left: 19px;
+    }
+
+    .share-button {
+      color: #fff;
+      font-weight: bold;
+      font-size: 14px;
+      height: 35px;
+      margin-right: 14px;
+      background-color: #ffa64d;
+      padding: 5px 10px;
+      border-radius: 10px;
+      text-transform: capitalize;
+      margin-left: auto;
+    }
+  }
+}
+
+.campaign-details {
+  .campaign-images {
+    min-height: 100px;
+    width: 100%;
+  }
+  .campaign-order-details {
+    border: 1px dotted #3785b8;
+    border-radius: 10px;
+    background-color: #d7edfc;
+    margin: 0 -5px 0 -5px;
+    padding: 15px 23px;
+
+    p {
+      margin: 0 0 5px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #3785b8;
+    }
+  }
+
+  .scrolling-div {
+    border-bottom: 1px solid #eee;
+    margin-top: 5px;
+    height: calc(100% - 500px);
+    overflow-x: scroll;
+  }
+
+  .campaign-description {
+    padding: 15px 18px;
+
+    .header {
+      margin: 5px 0 0;
+      font-size: 14px;
+      font-weight: 600;
+      color: #3785b8;
+    }
+    .description {
+      margin: 5px 0 0;
+      font-size: 12px;
+      font-weight: 600;
+      color: #999999;
+    }
+  }
+
+  .footer-div {
+    height: 60px;
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    position: fixed;
+    bottom: 0;
+    width: calc(100% - 20px);
+    align-items: center;
+
+    .rating {
+      > p {
+        margin: 0;
+        font-size: 12px;
+        font-weight: 600;
+        color: #3785b8;
+      }
+    }
+    .shop-now-button {
+      color: #fff;
+      font-weight: bold;
+      font-size: 14px;
+      height: 45px;
+      background-color: #ffa64d;
+      padding: 5px 10px;
+      border-radius: 22px;
+      border: 0;
+      padding: 20px;
+      margin-left: auto;
+    }
+  }
+}
+
+.campaign-catalog {
+  .scrolling-div {
+    margin-top: 5px;
+    height: calc(100% - 200px);
+    overflow-x: scroll;
+  }
+  .floating-div {
+    position: fixed;
+    width: calc(100% - 100px);
+    border-radius: 4px;
+    background-color: #ffa64d;
+    left: 30px;
+    bottom: 20px;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 35px;
+    font-size: 12px;
+    padding: 0 20px;
+    font-weight: 900;
+
+    p {
+      margin: 0;
+      width: fit-content;
+    }
+  }
+}

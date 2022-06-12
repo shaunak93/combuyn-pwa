@@ -1,74 +1,222 @@
-import React, {useState} from 'react';
-import DoneRoundedIcon from '@mui/icons-material/DoneRounded';
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import BottomDrawer from "../drawers/BottomDrawer";
+import ApartmentIcon from "@mui/icons-material/Apartment";
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
+import Button from "@mui/material/Button";
+import Select from "react-select";
+import { getApartmentList } from "../../apis/apartments";
+import { updateAddressAction } from "../../store/actions/addressActions";
+
+const CustomeApartmentOption = (args) => {
+  console.log(args);
+  let { data, setValue } = args;
+  const onClick = () => {
+    console.log({ data });
+    setValue(data);
+  };
+  return (
+    <div
+      onClick={onClick}
+      className="custom-apartment-option"
+      style={{
+        display: "inline-block",
+        width: "100%",
+        padding: "0 10px",
+        boxSizing: "border-box",
+      }}
+    >
+      <span
+        className="apartment-name"
+        style={{
+          float: "left",
+          color: "#3785B8",
+          fontSize: "16px",
+          fontWeight: "bold",
+        }}
+      >
+        {data.label}
+      </span>
+      <span
+        className="area-name"
+        style={{
+          float: "right",
+          color: "#555",
+          fontSize: "13px",
+          fontWeight: "bold",
+        }}
+      >
+        {data.cluster}
+      </span>
+    </div>
+  );
+};
 
 function AddressSelector(props) {
-    const [selectedAddress, setSelectedAddress] = useState('add2');
-    let options = {
-        add1: 'Address Name 1',
-        add2: 'Address Name 2',
-        add3: 'Address Name 3',
-        add4: 'Address Name 4'
+  const [apartmentMasterlist, setApartmentMasterList] = useState([]);
+  const [apartmentList, setApartmentList] = useState([]);
+  const [apartmentSelectedOption, setApartmentSelectedOption] = useState(null);
+  const [towerList, setTowerList] = useState([]);
+  const [towerSelectedOption, setTowerSelectedOption] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [address, setAddress] = useState({});
+  const currentAddress = useSelector((state) => state.address);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    getApartmentList((err, data) => {
+      setApartmentMasterList(data || []);
+    });
+  }, []);
+
+  useEffect(() => {
+    let { apartmentId, towerId, flatNumber } = currentAddress;
+    setAddress({ apartmentId, towerId, flatNumber });
+  }, [currentAddress]);
+
+  useEffect(() => {
+    let aprtList = apartmentMasterlist
+      .filter((aprt) => aprt?.status && aprt?.status.toLowerCase() === "active")
+      .map((aprt) => {
+        let { id, name, cluster, clusterName } = aprt;
+
+        return { value: id, label: name, cluster: clusterName || cluster };
+      });
+    setApartmentList(aprtList);
+    if (address?.apartmentId) {
+      setApartmentSelectedOption(
+        aprtList.find((aprt) => aprt.value === address.apartmentId)
+      );
     }
-    return (
-        <div style={{position: 'relative', height: 'max-content',  margin: '10px 0',boxSizing:'border-box',
-        borderRadius: '8px'}}>
-            <div style={{ width: '100%', height: '20px', verticalAlign: 'top', marginBottom: '10px'}}>
-                <span style={{fontSize: '16px', fontWeight: 'bold', color: '#4D4D4D', margin: '0', width: 'max-content', paddingLeft: '13px'}}>Select Pick up address</span>
-                <span style={{fontSize: '10px', fontWeight: '500', color: '#48C28B', margin: '0', width: 'max-content', paddingLeft: '5px'}}>FREE delivery</span>
-            </div>
-            {Object.keys(options).map((key) => 
-                <AddressOption 
-                onClick={()=>{setSelectedAddress(key)}}
-                key={key}
-                value={options[key]}
-                isSelected={key === selectedAddress}
-                />
-            )}
+  }, [apartmentMasterlist]);
 
-        </div>
-    );
-}
+  useEffect(() => {
+    if (address.apartmentId) {
+      let selectedApartment = apartmentMasterlist.find(
+        (aprt) => aprt.id === address.apartmentId
+      );
+      let twrList = (selectedApartment?.towers || [])
+        .filter((twr) => twr?.status && twr?.status.toLowerCase() === "active")
+        .map((twr) => {
+          let { _id, name } = twr;
 
-const AddressOption = (props) => {
-    let {onClick, key, value, isSelected} = props; 
-    return (
-            <div style={{ boxSizing: 'border-box', width: '100%', height: '49px', verticalAlign: 'top', paddingTop: '14px',backgroundColor: `${isSelected?'#D7EDFC':'#F7F7F7'}`, borderRadius: '4px', marginBottom: '5px'}}>
-                <span onClick={onClick} style={{fontSize: '14px', fontWeight: 'bold', color: '#3785B8', margin: '0', width: 'max-content', paddingLeft: '13px'}}>{value}</span>
-                {isSelected && 
-                    <div style={{float: 'right', display: 'inline-block', width: '20px', height: '20px', borderRadius: '10px', backgroundColor: '#48C28B', marginRight: '13px'}}>
-                        <DoneRoundedIcon style={{display:'inline-block',color: '#ffffff', height: '10px', width: '10px', padding: '5px'}}/>
-                    </div>
-                }
-            </div>
-    )
+          return { value: _id, label: name };
+        });
+      setTowerList(twrList);
+      if (address?.towerId) {
+        setTowerSelectedOption(
+          twrList.find((twr) => twr.value === address.towerId)
+        );
+      } else {
+        setTowerSelectedOption(null);
+      }
+    }
+  }, [address, apartmentList]);
 
+  const onApartmentSelect = (option) => {
+    let aprtId = option.value;
+    setAddress({ apartmentId: aprtId });
+    setApartmentSelectedOption(option);
+  };
+
+  const onTowerSelect = (option) => {
+    let twrId = option.value;
+    setAddress({
+      apartmentId: address.apartmentId,
+      towerId: twrId,
+    });
+    setTowerSelectedOption(option);
+  };
+
+  const onFlatNumberUpdate = (event) => {
+    let flatNumber = event.target.value;
+    setAddress({
+      apartmentId: address.apartmentId,
+      towerId: address.towerId,
+      flatNumber: flatNumber,
+    });
+  };
+
+  const onSaveClick = () => {
+    if (address.apartmentId && address.towerId && address.flatNumber) {
+      let apartmentObject = apartmentMasterlist.find(
+        (aprt) => aprt.id === address.apartmentId
+      );
+      let towerObj = (apartmentObject?.towers || []).find(
+        (twr) => twr._id === address.towerId
+      );
+      dispatch(
+        updateAddressAction({
+          apartmentId: address.apartmentId,
+          towerId: address.towerId,
+          flatNumber: address.flatNumber,
+          apartmentName: apartmentObject.name,
+          towerName: towerObj.name,
+        })
+      );
+    }
+  };
+
+  const options = [
+    { value: "chocolate1", label: "Chocolate" },
+    { value: "strawberry2", label: "Strawberry" },
+    { value: "vanilla3", label: "Vanilla" },
+  ];
+
+  useEffect(() => {}, []);
+  return (
+    <div className="address-selector">
+      <div className="header">Residential Address</div>
+      <br />
+      <Select
+        isSearchable
+        loadingMessage
+        maxMenuHeight
+        isFocused
+        onChange={onApartmentSelect}
+        options={apartmentList}
+        placeholder="Select apartment"
+        filterOption={(option, inputValue) => {
+          return option.label.includes(inputValue.trim());
+        }}
+        value={apartmentSelectedOption}
+        components={{ Option: CustomeApartmentOption }}
+      />
+      <br />
+      <Select
+        isSearchable
+        loadingMessage
+        maxMenuHeight
+        onChange={onTowerSelect}
+        options={towerList}
+        placeholder="Select tower"
+        filterOption={(option, inputValue) => {
+          return option.label.includes(inputValue.trim());
+        }}
+        isDisabled={!address.apartmentId}
+        value={towerSelectedOption}
+      />
+      <br />
+      <div className="flat-input-div">
+        <input
+          type="text"
+          value={address.flatNumber || ""}
+          onChange={onFlatNumberUpdate}
+          className="flat-input"
+          placeholder="Enter flat number"
+          disabled={!address.towerId}
+        />
+      </div>
+      {JSON.stringify(address)}
+      <button
+        className={`save-button ${!address.flatNumber ? "disabled" : ""}`}
+        onClick={onSaveClick}
+      >
+        Save
+      </button>
+    </div>
+  );
 }
 
 export default AddressSelector;
-
-// import React, {useState} from 'react';
-
-// function SizeSelector(props) {
-//     const [selectedColor, setSelectedColor] = useState('l');
-//     let options = {
-//         xs: 'XS',
-//         s: 'S',
-//         m: 'M',
-//         l: 'L',
-//         xl: 'XL',
-//         xxl: 'XXL',
-//     }
-
-//     return (
-        
-//     );
-// }
-
-// const SizeOptions = (props) => {
-//     let {onClick, key, value, isSelected} = props;
-//     return (<div onClick={onClick} style={{boxSizing: 'border-box',display: 'inline-block', width: 'max-content', height: '40px', borderRadius: '4px', backgroundColor: '#E6E6E6', margin: '0 5px 5px 0', border: `${isSelected?'1px solid #707070':'0'}`}}>
-//         <p style={{margin: '0', color:'#4D4D4D', fontSize: '14px', fontWeight: `${isSelected?'bold':'500'}`, textAlign: 'center', padding: '12px 20px 0'}}>{value}</p>
-//     </div>)
-// }
-
-// export default SizeSelector;

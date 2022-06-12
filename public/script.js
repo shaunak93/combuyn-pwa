@@ -9,7 +9,6 @@ const butInstall = document.getElementById('butInstall');
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('/service-worker.js').then((reg)=>{
-            console.log('success:', reg.scope )
         }).catch((e)=>{console.log('failure:', e)})
     })
 }
@@ -21,14 +20,13 @@ if ('serviceWorker' in navigator) {
  * if the page isn't served over HTTPS, the service worker won't load.
  */
 if (window.location.protocol === 'http:') {
-  const requireHTTPS = document.getElementById('requireHTTPS');
-  const link = requireHTTPS.querySelector('a');
-  link.href = window.location.href.replace('http://', 'https://');
-  requireHTTPS.classList.remove('hidden');
+  // const requireHTTPS = document.getElementById('requireHTTPS');
+  // const link = requireHTTPS.querySelector('a');
+  // link.href = window.location.href.replace('http://', 'https://');
+  // requireHTTPS.classList.remove('hidden');
 }
 
 window.addEventListener('beforeinstallprompt', (event) => {
-  alert('beforeinstallprompt')
     console.log('👍', 'beforeinstallprompt', event);
     // Stash the event so it can be triggered later.
     window.deferredPrompt = event;
@@ -38,8 +36,8 @@ window.addEventListener('beforeinstallprompt', (event) => {
 
 if (window.matchMedia('(display-mode: standalone)').matches) {  
   // do things here
-  alert('standalone')
+  // alert('standalone')
 }
 else{
-  alert('browser')
+  // alert('browser')
 }

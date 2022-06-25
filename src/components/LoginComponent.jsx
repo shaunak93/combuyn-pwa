@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -13,21 +13,6 @@ import { requestOTP, loginWithOTP } from "../apis/users";
 
 import { updateUser } from "../store/actions/userActions";
 import { updateToken } from "../store/actions/tokenActions";
-
-let myStorage = window.localStorage;
-
-const getButtonLabel = (state) => {
-  let { GET_OTP, ENTER_OTP } = LOGIN_STEPS;
-  switch (state) {
-    case ENTER_OTP:
-      return "Sign in";
-      break;
-    case GET_OTP:
-    default:
-      return "Get OTP";
-      break;
-  }
-};
 
 function validateEmail(mail) {
   if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
@@ -42,13 +27,11 @@ function LoginComponent(props) {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const [username, setUsername] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
   const [otp, setOtp] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [currentStep, setCurrentStep] = useState(GET_OTP);
-  const [buttonLabel, setButtonLabel] = useState(getButtonLabel(GET_OTP));
   const [isLoading, setIsLoading] = useState(false);
   const [isNewUser, setIsNewUser] = useState(true);
 
@@ -133,10 +116,6 @@ function LoginComponent(props) {
         break;
     }
   };
-
-  useEffect(() => {
-    setButtonLabel(getButtonLabel(currentStep));
-  }, [currentStep]);
 
   return (
     <Paper

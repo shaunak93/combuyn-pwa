@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   increaseProductQuantity,
   decreaseProductQuantity,
-  removeProduct,
-  addProduct,
 } from "../store/actions/cartActions";
 
-function ProductCard({ product, campaignId }) {
+function ProductCard({ product, campaign }) {
   const dispatch = useDispatch();
   let {
     name,
@@ -19,13 +17,22 @@ function ProductCard({ product, campaignId }) {
     _id: productId,
     vendorId,
   } = product;
+
+  let { id: campaignId, endTime, name: campaignName, deliveryTime } = campaign;
   const quantity = useSelector(getProductQunatityFromCart);
   //const [quantity, setQuantity] = useState(0);
   const incQuantity = ({ cost, attributes }) => {
     dispatch(
       increaseProductQuantity({
-        campaignId,
+        campaignId: campaign.id,
+        campaignDetails: {
+          id: campaignId,
+          endTime,
+          name: campaignName,
+          deliveryTime,
+        },
         product: {
+          name: name,
           productId: productId,
           vendorId: vendorId || "",
           quantity: 1,

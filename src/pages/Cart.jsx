@@ -1,20 +1,14 @@
-import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
-import ShareIcon from "@mui/icons-material/Share";
-import Button from "@mui/material/Button";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-// import CampaignAddress from "../components/CampaignAddress";
-import { getCampaign } from "../apis/campaign";
-import CampaignCatalog from "../components/CampaignCatalog";
-import CampaignDetails from "../components/CampaignDetails";
 import CommonHeader from "../components/headers/CommonHeader";
 import CartCampaignCard from "../components/cards/CartCampaignCard";
 
 function Cart(props) {
   const history = useHistory();
-  const [isLoading, setIsLoading] = useState(false);
-  const { apartment, cart } = useSelector((state) => state.cart);
+  const { cart } = useSelector((state) => state.cart);
+
+  //const {quantity, totalCost}
 
   return (
     <div className="cart-page">
@@ -27,16 +21,16 @@ function Cart(props) {
       <div className="cart-body">
         <div className="scrolling-div">
           <div className="top-spacer"></div>
-          {!!cart &&
-            !!cart.length &&
-            cart.map((campaign) => <CartCampaignCard campaign={campaign} />)}
-          <CartCampaignCard campaign={cart[0]} />
-          <CartCampaignCard campaign={cart[0]} />
-          <CartCampaignCard campaign={cart[0]} />
-          <CartCampaignCard campaign={cart[0]} />
-          <CartCampaignCard campaign={cart[0]} />
-          <CartCampaignCard campaign={cart[0]} />
-          <CartCampaignCard campaign={cart[0]} />
+          {!!cart && !!cart.length ? (
+            <>
+              {cart.map((campaign) => (
+                <CartCampaignCard campaignInCart={campaign} />
+              ))}
+            </>
+          ) : (
+            <p>Your cart is empty.</p>
+          )}
+
           <div className="bottom-spacer"></div>
         </div>
       </div>

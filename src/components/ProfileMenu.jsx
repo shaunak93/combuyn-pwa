@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import RightArrow from "../../assets/rightArrow.png";
+import RightArrow from "../assets/rightArrow.png";
 
 function ProfileMenu(props) {
   let { onMenuOptionClick } = props;
@@ -39,7 +39,7 @@ function ProfileMenu(props) {
             <p className="option-description">Active orders & Past orders</p>
           </div>
           <div className="select-button">
-            <img src={RightArrow} />
+            <img src={RightArrow} alt="loading..." />
           </div>
         </div>
       </div>

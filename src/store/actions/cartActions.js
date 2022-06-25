@@ -3,6 +3,7 @@ import {
     CART_PRODUCT_DEC,
     CART_PRODUCT_REMOVE,
     CART_PRODUCT_ADD,
+    CART_CAMPAIGN_REMOVE,
     CART_RESET
 } from '../constants'
 
@@ -45,9 +46,14 @@ const addProduct = (payload) => {
     return { type: CART_PRODUCT_ADD, payload }
 };
 
+const removeCampaign = (payload) => {
+    return { type: CART_CAMPAIGN_REMOVE, payload }
+};
+
+
 const resetCart = (payload) => {
     return { type: CART_RESET, payload }
 }
 
 
-export { increaseProductQuantity, decreaseProductQuantity, removeProduct, addProduct, resetCart };
+export { increaseProductQuantity, decreaseProductQuantity, removeProduct, addProduct, removeCampaign, resetCart };

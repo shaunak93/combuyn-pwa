@@ -2,9 +2,6 @@ import axios from "axios";
 import { baseUrl } from '../constants/api';
 
 axios.defaults.headers.common['Content-Type'] = 'application/json'
-let myStorage = window.localStorage;;
-
-
 
 const getCampaigns = (options, callback) => {
     let url = baseUrl + 'v1/campaigns';

@@ -3,6 +3,7 @@ import {
     CART_PRODUCT_DEC,
     CART_PRODUCT_REMOVE,
     CART_PRODUCT_ADD,
+    CART_CAMPAIGN_REMOVE,
     CART_RESET
  } from '../constants';
  import _ from 'underscore';
@@ -41,12 +42,13 @@ function cartReducer(state = initialState, action) {
     }
     if (action.type === CART_PRODUCT_INC) {
         let {payload} = action
-        let {campaignId, product, attributes=[]} = payload;
+        let {campaignId, product, attributes=[], campaignDetails} = payload;
         let {productId} = product;
         let campaignInCart = newState.cart.find(cmpn => cmpn.campaignId === campaignId);
         if(!campaignInCart){
             campaignInCart = {
                 campaignId,
+                campaignDetails,
                 products: []
             }
             newState.cart.push(campaignInCart)
@@ -120,6 +122,14 @@ function cartReducer(state = initialState, action) {
         if(!campaignInCart.products.length){
             newState.cart = newState.cart.filter(cmpn => cmpn.campaignId !== campaignId)
         }
+        return newState;
+    }
+    if (action.type === CART_CAMPAIGN_REMOVE) {
+        let {payload} = action
+        let {campaignId} = payload;
+
+        let campaignsInCart = newState.cart.filter(cmpn => cmpn.campaignId !== campaignId);
+        newState.cart = campaignsInCart;
         return newState;
     }
     if (action.type === CART_RESET) {

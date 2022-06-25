@@ -1,33 +1,16 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useTimeLeft } from "../hooks/hooks";
 import Button from "@mui/material/Button";
 import ShareIcon from "@mui/icons-material/Share";
-import ImageSlider from "./ImageSlider";
-import Rating from "@mui/material/Rating";
-import ProductCategories from "./ProductCategories";
-import ProductCard from "./ProductCard";
 import ProductsByCategories from "./ProductsByCategories";
-
-const getCategories = (products = []) => {
-  let categories = new Set();
-  products.forEach((product) => {
-    categories.add(product.category);
-  });
-  return Array.from(categories);
-};
 
 function CampaignCatalog({ campaign, products }) {
   const history = useHistory();
-  let { name, startTime, endTime, description, id: campaignId } = campaign;
+  let { name, startTime, endTime, id: campaignId } = campaign;
 
-  const [catagories] = useState(getCategories(products));
-  const [selectedCategory, setSelectedCategory] = useState(
-    catagories.length && catagories[0]
-  );
-
-  const { timeLeftToStartString, timeLeftToEndString } = useTimeLeft({
+  const { timeLeftToEndString } = useTimeLeft({
     startTime,
     endTime,
   });
@@ -79,30 +62,9 @@ function CampaignCatalog({ campaign, products }) {
           Share
         </Button>
       </div>
-      <ProductsByCategories products={products} campaignId={campaignId} />
-      {/* <CategoriesTabs
-                categories={catagories}
-                selectedCategory={selectedCategory}
-                onCategorySelect={setSelectedCategory}
-            />
-            <ProductsByCategoryPanel
-                categories={catagories}
-                products={products}
-            />
-            <div className="scrolling-div">
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <br />
-                <br />
-            </div> */}
+      <ProductsByCategories products={products} campaign={campaign} />
       {!!totalCampaignQuantity && (
-        <div className="floating-div" onClick={goToCart}>
+        <div className="floating-button" onClick={goToCart}>
           <p>{`${totalCampaignQuantity} items | ₹ ${totalCampaignCost}`}</p>
           <p>{"Continue >"}</p>
         </div>

@@ -15,7 +15,11 @@ function PageHeader(props) {
   return (
     <div className="page-header">
       <div className={`banner-div ${searchOpen ? "hidden" : ""}`}>
-        <img className="banner-img" src="./combuynBanner.png" />
+        <img
+          className="banner-img"
+          alt="loading..."
+          src="./combuynBanner.png"
+        />
         <div className="banner-badges">
           <Badge
             className="badge"

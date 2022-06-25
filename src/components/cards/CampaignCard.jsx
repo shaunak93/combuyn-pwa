@@ -1,13 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import TimerOutlinedIcon from "@mui/icons-material/TimerOutlined";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { useHistory } from "react-router-dom";
 import { useTimeLeft } from "../../hooks/hooks";
-// 1F1D36 E9A6A6
-// 1C0C5B C996CC
-// 2D2424 E0C097
-// 382933 A4B494
 
 const pallete = [
   {
@@ -42,7 +38,7 @@ function CampaignCard({ campaign, isClickable, index }) {
       history.push(`/campaign/${id}`);
     }
   };
-  const { timeLeftToStartString, timeLeftToEndString } = useTimeLeft({
+  const { timeLeftToEndString } = useTimeLeft({
     startTime,
     endTime,
   });
@@ -96,6 +92,7 @@ function CampaignCard({ campaign, isClickable, index }) {
           onLoad={() => {
             setIsImageLoaded(true);
           }}
+          alt="loading..."
         ></img>
       </div>
       <div

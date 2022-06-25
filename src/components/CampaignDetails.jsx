@@ -8,13 +8,10 @@ import Rating from "@mui/material/Rating";
 
 function CampaignDetails({ campaign, onNextClick }) {
   let {
-    id,
     name,
-    shortDescription,
     description,
     startTime,
     endTime,
-    deliveryTime,
     minimumOrder,
     totalOrder = 20,
     images,
@@ -88,29 +85,13 @@ function CampaignDetails({ campaign, onNextClick }) {
       )}
 
       <div className="scrolling-div">
-        <div className="campaign-description">
-          <p className="header">Description</p>
-          {!!description && parse(description)}
-          {/* <p className="description">
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
-          </p>
-          <p className="description">
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
-          </p>
-          <p className="description">
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
-          </p>
-          <p className="header">Description</p>
-          <p className="description">
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
-          </p>
-          <p className="description">
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
-          </p>
-          <p className="description">
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
-          </p> */}
-        </div>
+        {!!description && (
+          <div className="campaign-description">
+            <p className="header">Description</p>
+            <div className="parsed-html">{parse(description)}</div>
+            <div style={{ height: "60px" }}></div>
+          </div>
+        )}
       </div>
       <div className="footer-div">
         {!!ratings ||
@@ -120,13 +101,9 @@ function CampaignDetails({ campaign, onNextClick }) {
               <Rating name="read-only" value={3.5} readOnly />
             </div>
           ))}
-        <Button
-          variant="outlined"
-          className="shop-now-button"
-          onClick={onNextClick}
-        >
-          {status === "Active" ? "Shop Now" : "Check Products"}
-        </Button>
+        <div className="floating-button" onClick={onNextClick}>
+          <p>{status === "Active" ? "Shop Now" : "Check Products"}</p>
+        </div>
       </div>
     </div>
   );

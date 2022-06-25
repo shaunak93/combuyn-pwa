@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Grid from "@material-ui/core/Grid";
-import Button from "@mui/material/Button";
-import ProductCampaignCard from "./cards/ProductCampaignCard";
 import CampaignCard from "./cards/CampaignCard";
 import DummyCampaignCard from "./skeletons/DummyCampaignCard";
 import { getCampaigns } from "../apis/campaign";
-import ShareIcon from "@mui/icons-material/Share";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 const tabList = [
@@ -16,12 +12,10 @@ const tabList = [
   { value: "Completed", text: "Completed" },
 ];
 
-function Campaigns(props) {
-  let { onCardClick } = props;
+function Campaigns() {
   const [isLoading, setIsLoading] = useState(true);
   const [campaigns, setCampaigns] = useState([]);
   const [selectedTab, setSelectedTab] = useState(tabList && tabList[0].value);
-  const [campaignsCount, setCampaignsCount] = useState(-1);
   const [loadError, setLoadError] = useState("");
   const apartmentId = useSelector(
     (state) => state.address && state.address.apartmentId
@@ -30,9 +24,6 @@ function Campaigns(props) {
   useEffect(() => {
     if (!apartmentId) return;
     getCampaigns({}, (err, res) => {
-      console.log("====================================");
-      console.log("getCampaigns", { err, res });
-      console.log("====================================");
       setIsLoading(false);
       if (err) {
         setLoadError(err);

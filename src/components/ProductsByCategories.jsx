@@ -2,14 +2,12 @@ import React, { useState } from "react";
 import ProductCategories from "./ProductCategories";
 import ProductCard from "./ProductCard";
 
-function ProductsByCategories({ products, campaignId }) {
-  const [categories, setCategories] = useState(
-    (products || [])
-      .map((product) => product.category)
-      .filter((category, index, arr) => {
-        return arr.indexOf(category) === index;
-      })
-  );
+function ProductsByCategories({ products, campaign }) {
+  const categories = (products || [])
+    .map((product) => product.category)
+    .filter((category, index, arr) => {
+      return arr.indexOf(category) === index;
+    });
   const [selectedCategory, setSelectedCategory] = useState(
     !!categories && !!categories.length && categories[0]
   );
@@ -22,7 +20,7 @@ function ProductsByCategories({ products, campaignId }) {
         onCategorySelect={setSelectedCategory}
       />
       <ProductsByCategoryPanel
-        campaignId={campaignId}
+        campaign={campaign}
         categories={categories}
         products={products}
         selectedCategory={selectedCategory}
@@ -35,7 +33,7 @@ function ProductsByCategoryPanel({
   products,
   categories,
   selectedCategory,
-  campaignId,
+  campaign,
 }) {
   let productListByCategories = categories.reduce((acc, category) => {
     acc[category] = products.filter((product) => product.category === category);
@@ -63,7 +61,7 @@ function ProductsByCategoryPanel({
             <div className="scrolling-div">
               <div style={{ width: "100%", height: "50px" }}></div>
               {productList.map((product) => (
-                <ProductCard product={product} campaignId={campaignId} />
+                <ProductCard product={product} campaign={campaign} />
               ))}
               <div style={{ width: "100%", height: "50px" }}></div>
             </div>

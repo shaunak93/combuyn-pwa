@@ -19,9 +19,6 @@ const store = createStore(rootReducer, persistedState);
 
 store.subscribe(() => {
     let newState = store.getState();
-    console.log('====================================');
-    console.log({newState});
-    console.log('====================================');
     if(newState.address){
         myStorage.setItem('combuyn-current-address', JSON.stringify(newState.address || {}));
     }

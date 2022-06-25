@@ -3,7 +3,12 @@ import { Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
 
 function ImageSlider(props) {
-  const { imageUrls, margin, showIndicators } = props;
+  const {
+    imageUrls,
+    margin,
+    showIndicators,
+    imageKeyLabel = "imageKeyLabel",
+  } = props;
   return (
     <div
       style={{
@@ -29,6 +34,7 @@ function ImageSlider(props) {
               <div
                 className="each-slide"
                 style={{ width: "100%", height: "100%", textAlign: "center" }}
+                key={`imageKeyLabel_${i}`}
               >
                 <img
                   style={{

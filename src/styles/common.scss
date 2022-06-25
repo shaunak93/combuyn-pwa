@@ -584,3 +584,20 @@
 #react-select-2-listbox {
   position: relative !important;
 }
+
+.parsed-html{
+  font-size: 11px;
+  p{
+    color: #333;
+    margin: 0;
+  }
+  ul{
+    margin: 0;
+    padding-left: 16px;
+    color: #333;
+  }
+  h3{
+    margin: 5px 0;
+    color: #3785b8;
+  }
+}

@@ -2,7 +2,6 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import { useState } from "react";
 
 function AddressPanel(props) {
   const { onClick } = props;

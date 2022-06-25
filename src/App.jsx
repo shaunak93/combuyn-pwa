@@ -1,23 +1,21 @@
+import "react-toastify/dist/ReactToastify.css";
+
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
+import { useReactPWAInstall } from "react-pwa-install";
+import { ToastContainer } from "react-toastify";
 
 import "./App.css";
 import "./app.scss";
-import Campaign from "./pages/Campaign2";
-import Home from "./pages/Home2";
-import Login from "./pages/Login";
-import Cart from "./pages/Cart";
-//import Menu from './pages/Menu';
-import Profile from "./pages/Profile";
 import PublicRoute from "./routes/PublicRoute";
-import PrivateRoute from "./routes/PrivateRoute";
-import { getGlobalVariables } from "./apis/global-variables";
 import { checkAndRefreshAccessToken } from "./apis/users";
 
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import Campaign from "./pages/Campaign";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Cart from "./pages/Cart";
+import Profile from "./pages/Profile";
 
-import { useReactPWAInstall } from "react-pwa-install";
 import CombuynIconSmall from "./assets/combuynIconSmall.png";
 
 function App() {
@@ -25,7 +23,6 @@ function App() {
   const [showInstallPrompt, setShowInstallPrompt] = useState(false);
 
   useEffect(() => {
-    getGlobalVariables();
     checkAndRefreshAccessToken();
   }, []);
 

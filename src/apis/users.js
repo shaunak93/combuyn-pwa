@@ -1,4 +1,3 @@
-import { Email } from "@material-ui/icons";
 import axios from "axios";
 import {baseUrl} from '../constants/api';
 

@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import BottomDrawer from "../drawers/BottomDrawer";
-import ApartmentIcon from "@mui/icons-material/Apartment";
-import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
-import Button from "@mui/material/Button";
 import Select from "react-select";
 import { getApartmentList } from "../../apis/apartments";
 import { updateAddressAction } from "../../store/actions/addressActions";
@@ -59,7 +54,6 @@ function AddressSelector(props) {
   const [apartmentSelectedOption, setApartmentSelectedOption] = useState(null);
   const [towerList, setTowerList] = useState([]);
   const [towerSelectedOption, setTowerSelectedOption] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
   const [address, setAddress] = useState({});
   const currentAddress = useSelector((state) => state.address);
   const dispatch = useDispatch();
@@ -89,7 +83,7 @@ function AddressSelector(props) {
         aprtList.find((aprt) => aprt.value === address.apartmentId)
       );
     }
-  }, [apartmentMasterlist]);
+  }, [address.apartmentId, apartmentMasterlist]);
 
   useEffect(() => {
     if (address.apartmentId) {
@@ -112,7 +106,7 @@ function AddressSelector(props) {
         setTowerSelectedOption(null);
       }
     }
-  }, [address, apartmentList]);
+  }, [address.apartmentId, address.towerId, apartmentMasterlist]);
 
   const onApartmentSelect = (option) => {
     let aprtId = option.value;
@@ -157,12 +151,6 @@ function AddressSelector(props) {
       );
     }
   };
-
-  const options = [
-    { value: "chocolate1", label: "Chocolate" },
-    { value: "strawberry2", label: "Strawberry" },
-    { value: "vanilla3", label: "Vanilla" },
-  ];
 
   useEffect(() => {}, []);
   return (

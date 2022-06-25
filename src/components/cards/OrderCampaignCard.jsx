@@ -1,5 +1,4 @@
 import React from "react";
-import DeleteIcon from "@mui/icons-material/Delete";
 import ShareIcon from "@mui/icons-material/Share";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { getHumanReadableDate } from "../../utils/general";
@@ -24,8 +23,9 @@ const getActionbuttons = (state) => {
 
 function OrderCampaignCard({ order }) {
   let { createdAt, campaigns, status, orderId } = order;
-  let { name, deliveryDate, products, alsoPurchasedBy, outOfStockDetails } = campaigns[0];
-  let productsNameString = products.map(product => product.name).join(', ');
+  let { name, deliveryDate, products, alsoPurchasedBy, outOfStockDetails } =
+    campaigns[0];
+  let productsNameString = products.map((product) => product.name).join(", ");
   return (
     <div className="order-capaign-card">
       <div className="header">
@@ -41,29 +41,33 @@ function OrderCampaignCard({ order }) {
         </div>
       </div>
       <div className="item-list">
-        <p>
-          Items ordered : {productsNameString}
-        </p>
+        <p>Items ordered : {productsNameString}</p>
       </div>
-      {alsoPurchasedBy && <div className="purchased-by-container">
-        <p>Also purchased by</p>
-        <p style={{ fontWeight: "bold", fontSize: "10px" }}>{10}</p>
-      </div>}
+      {alsoPurchasedBy && (
+        <div className="purchased-by-container">
+          <p>Also purchased by</p>
+          <p style={{ fontWeight: "bold", fontSize: "10px" }}>{10}</p>
+        </div>
+      )}
 
       <div className="date-container">
         {!!createdAt && <p>Ordered date : {getHumanReadableDate(createdAt)}</p>}
-        {!!deliveryDate && <p>Delivery date : {getHumanReadableDate(deliveryDate)}</p>}
+        {!!deliveryDate && (
+          <p>Delivery date : {getHumanReadableDate(deliveryDate)}</p>
+        )}
       </div>
       <div className="actions-container">{getActionbuttons("delivered")}</div>
-      {!!outOfStockDetails && <div className="outofstock-container">
-        <p>
-          Out of stock details:
-          <span>
-            item1, item2, item1, item2, item1, item2, item1, item2, item1,
-            item2, item1, item2,
-          </span>
-        </p>
-      </div>}
+      {!!outOfStockDetails && (
+        <div className="outofstock-container">
+          <p>
+            Out of stock details:
+            <span>
+              item1, item2, item1, item2, item1, item2, item1, item2, item1,
+              item2, item1, item2,
+            </span>
+          </p>
+        </div>
+      )}
     </div>
   );
 }
